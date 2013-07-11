@@ -28,6 +28,7 @@ var rest = require('restler');
 var HTMLFILE_DEFAULT = "index.html";
 var HTMLPAGE_DEFAULT = "http://fathomless-headland-7146.herokuapp.com";
 var CHECKSFILE_DEFAULT = "checks.json";
+var JSON_OUTFILE = "json_out.txt";
 
 var assertFileExists = function(infile) {
     var instr = infile.toString();
@@ -73,7 +74,8 @@ var buildFile = function(filename, checksFile) {
 	    assertFileExists(filename);
 	    var checkJson = checkHtmlFile(filename, checksFile);
 	    var outJson = JSON.stringify(checkJson, null, 4);
-	    console.log(outJson);
+	    //console.log(outJson);
+	    fs.writeFileSync(JSON_OUTFILE, outJson + "\n");
 	}
     };
     return response2console;
